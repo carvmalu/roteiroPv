@@ -10,7 +10,7 @@ public class BST {
 	    System.out.println(tree.checkPV());
     }
 
-	//Implente
+	//Implemente
     public boolean checkPV() {
         return false;
     }
