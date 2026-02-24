@@ -12,17 +12,52 @@ public class BST {
 
 	//Implemente
     public boolean checkPV() {
-        return false;
+        if(this.root != null  && this.root.vermelho){
+            return false;
+        }
+        return checkPV(this.root);
     }
 
 	//Implemente a partir das propriedades básicas de uma PV. Utilize o método blackHeight para auxiliar.
 	private boolean checkPV(NodePV node) {
-        return false;
+        if(node == null) return true;
+        if(node.vermelho){
+            if((node.left != null && node.left.vermelho) || (node.right != null && node.right.vermelho)){
+                return false;
+            }
+        }
+
+        int leftHeight = blackHeight(node.left);
+        int rightHeight = blackHeight(node.right);
+
+        if(leftHeight != rightHeight){
+            return false;
+        }
+
+        return checkPV(node.left) && checkPV(node.right);
     }
 
     //Implemente
 	public int blackHeight(NodePV node) {
-        return 0;
+        if(node == null) return 0;
+
+        int leftHeight = blackHeight(node.left);
+        int rightHeight = blackHeight(node.right);
+
+        if (leftHeight == -1 || rightHeight == -1) {
+        return -1;
+        }
+
+        if(leftHeight != rightHeight){
+            return -1;
+        }
+
+        if(!node.vermelho){
+            return leftHeight + 1;
+        }
+
+        return leftHeight;
+
 	}
 
 	public boolean isEmpty() {
