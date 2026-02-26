@@ -149,10 +149,17 @@ public class BST {
     NodePV painho = node.parent;
     NodePV vovo = node.parent.parent;
 
-    painho.vermelho = 
+    painho.vermelho = false;
+	avo.vermelho = true;
+
+	if(node == painho.left){
+		rotateRight(vovo);
+	} else {
+		rotateLeft(vovo);
+	}
   }
 
-  p
+  
     
     
 }
